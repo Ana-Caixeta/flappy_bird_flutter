@@ -1,22 +1,22 @@
 import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
-import 'package:flappy_bird_game/game/assets.dart';
-import 'package:flappy_bird_game/game/configuration.dart';
-import 'package:flappy_bird_game/game/flappy_bird_game.dart';
-import 'package:flappy_bird_game/game/pipe_position.dart';
-import 'package:flappy_bird_game/components/pipe.dart';
+import 'package:flappy_bird/game/assets.dart';
+import 'package:flappy_bird/game/configuration.dart';
+import 'package:flappy_bird/game/flappy_bird_game.dart';
+import 'package:flappy_bird/game/pipe_position.dart';
+import 'package:flappy_bird/components/pipe.dart';
 
-class PipeGroup extends PositionComponent with HasGameRef<FlappyBirdGame> {
+class PipeGroup extends PositionComponent with HasGameReference<FlappyBirdGame> {
   PipeGroup();
 
   final _random = Random();
 
   @override
   Future<void> onLoad() async {
-    position.x = gameRef.size.x;
+    position.x = game.size.x;
 
-    final heightMinusGround = gameRef.size.y - Config.groundHeight;
+    final heightMinusGround = game.size.y - Config.groundHeight;
     final spacing = 100 + _random.nextDouble() * (heightMinusGround / 4);
     final centerY =
         spacing + _random.nextDouble() * (heightMinusGround - spacing);
@@ -30,7 +30,7 @@ class PipeGroup extends PositionComponent with HasGameRef<FlappyBirdGame> {
   }
 
   void updateScore() {
-    gameRef.bird.score += 1;
+    game.bird.score += 1;
     FlameAudio.play(Assets.point);
   }
 
@@ -44,9 +44,9 @@ class PipeGroup extends PositionComponent with HasGameRef<FlappyBirdGame> {
       updateScore();
     }
 
-    if (gameRef.isHit) {
+    if (game.isHit) {
       removeFromParent();
-      gameRef.isHit = false;
+      game.isHit = false;
     }
   }
 }

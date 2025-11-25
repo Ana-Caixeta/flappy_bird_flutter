@@ -1,12 +1,12 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
-import 'package:flappy_bird_game/game/assets.dart';
-import 'package:flappy_bird_game/game/configuration.dart';
-import 'package:flappy_bird_game/game/flappy_bird_game.dart';
-import 'package:flappy_bird_game/game/pipe_position.dart';
+import 'package:flappy_bird/game/assets.dart';
+import 'package:flappy_bird/game/configuration.dart';
+import 'package:flappy_bird/game/flappy_bird_game.dart';
+import 'package:flappy_bird/game/pipe_position.dart';
 
-class Pipe extends SpriteComponent with HasGameRef<FlappyBirdGame> {
+class Pipe extends SpriteComponent with HasGameReference<FlappyBirdGame> {
   Pipe({
     required this.pipePosition,
     required this.height,
@@ -28,7 +28,7 @@ class Pipe extends SpriteComponent with HasGameRef<FlappyBirdGame> {
         sprite = Sprite(pipeRotated);
         break;
       case PipePosition.bottom:
-        position.y = gameRef.size.y - size.y - Config.groundHeight;
+        position.y = game.size.y - size.y - Config.groundHeight;
         sprite = Sprite(pipe);
         break;
     }

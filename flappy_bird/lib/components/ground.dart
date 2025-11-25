@@ -6,7 +6,7 @@ import 'package:flappy_bird/game/assets.dart';
 import 'package:flappy_bird/game/flappy_bird_game.dart';
 import 'package:flappy_bird/game/configuration.dart';
 
-class Ground extends ParallaxComponent<FlappyBirdGame>{
+class Ground extends ParallaxComponent<FlappyBirdGame> {
   Ground();
 
   @override
@@ -20,8 +20,8 @@ class Ground extends ParallaxComponent<FlappyBirdGame>{
 
     add(
       RectangleHitbox(
-        position: Vector2(0, gameRef.size.y - Config.groundHeight),
-        size: Vector2(gameRef.size.x, Config.groundHeight),
+        position: Vector2(0, game.size.y - Config.groundHeight),
+        size: Vector2(game.size.x, Config.groundHeight),
       ),
     );
   }

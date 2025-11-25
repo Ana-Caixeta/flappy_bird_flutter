@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flappy_bird/game/assets.dart';
+import 'package:flappy_bird/game/flappy_bird_game.dart';
 
 class MainMenuScreen extends StatelessWidget {
   final FlappyBirdGame game;

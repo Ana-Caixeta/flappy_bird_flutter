@@ -16,20 +16,22 @@ class FlappyBirdGame extends FlameGame with TapCallbacks, HasCollisionDetection 
   Timer interval = Timer(Config.pipeInterval, repeat: true);
   bool isHit = false;
   late TextComponent score;
+
   @override
   Future<void> onLoad() async {
-    score = buildScore();
     addAll([
       Background(),
       Ground(),
       bird = Bird(),
-      PipeGroup()
+      PipeGroup(),
+      score = buildScore(),
     ]);
     interval.onTick = () => add(PipeGroup());
   }
 
   TextComponent buildScore() {
     return TextComponent(
+        priority: 100,
         position: Vector2(size.x / 2, size.y / 2 * 0.2),
         anchor: Anchor.center,
         textRenderer: TextPaint(

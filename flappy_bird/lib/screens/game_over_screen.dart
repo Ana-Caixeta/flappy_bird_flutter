@@ -17,10 +17,19 @@ class GameOverScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Text (
+              'Score: ${game.bird.score}',
+              style: const TextStyle(
+                fontSize: 60,
+                color: Colors.white,
+                fontFamily: 'Game',
+              ),
+            ),
             Image.asset(Assets.gameOver),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: (){},
+              onPressed: onRestart,
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
               child: const Text(
                 'Restart',
                 style: TextStyle(fontSize: 20),
@@ -30,5 +39,11 @@ class GameOverScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onRestart() {
+    game.bird.reset();
+    game.overlays.remove('gameOver');
+    game.resumeEngine();
   }
 }
